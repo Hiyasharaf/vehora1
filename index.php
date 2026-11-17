@@ -29,6 +29,23 @@ $vehicles = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
   <title>VEHORA — Find Your Perfect Vehicle</title>
   <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
+<style>
+  .car-360-box {
+    text-align: center;
+    perspective: 900px;
+  }
+  .car-360 {
+    width: 100%;
+    max-width: 390px;
+    filter: drop-shadow(0 12px 24px rgba(124, 58, 237, 0.4));
+    transform-style: preserve-3d;
+    animation: carSpin360 6s linear infinite;
+  }
+  @keyframes carSpin360 {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
+  }
+</style>
 <body>
 
 <div class="app-shell">
@@ -73,8 +90,8 @@ $vehicles = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
           <div class="max-price-note">Max Search Price: <span><?= fmtINR($maxSearch) ?></span> (<?= $extraPct ?>% extra)</div>
         </div>
 
-        <div style="text-align:center;">
-          <svg viewBox="0 0 420 190" width="100%" style="max-width:390px;filter:drop-shadow(0 12px 24px rgba(124,58,237,0.4));">
+       <div class="car-360-box">
+          <svg class="car-360" viewBox="0 0 420 190">
             <defs><linearGradient id="carBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#312e81"/><stop offset="50%" stop-color="#1e1b4b"/><stop offset="100%" stop-color="#090718"/></linearGradient></defs>
             <ellipse cx="210" cy="162" rx="175" ry="12" fill="rgba(124,58,237,0.28)"/>
             <path d="M38 132 C42 108 75 94 115 90 L165 56 C198 46 262 46 302 68 L355 96 C382 102 396 116 394 134 L375 144 L52 144 Z" fill="url(#carBody)" stroke="#8b5cf6" stroke-width="1.5"/>
