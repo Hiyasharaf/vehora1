@@ -41,7 +41,18 @@ $vehicles = $conn->query("SELECT * FROM vehicles ORDER BY id DESC")->fetch_all(M
                 <td><?= htmlspecialchars($v['type']) ?></td>
                 <td><?= fmtINR($v['price']) ?></td>
                 <td><?= $v['mileage'] ?> km/l</td>
-                <td><a href="?delete=<?= $v['id'] ?>" onclick="return confirm('Delete?')" style="background:#ef4444;color:#fff;padding:5px 10px;border-radius:6px;text-decoration:none;">Delete</a></td>
+               <td style="white-space:nowrap;">
+    <a href="edit_vehicle.php?id=<?= (int)$v['id'] ?>"
+       style="background:#6366f1;color:white;padding:6px 12px;border-radius:6px;text-decoration:none;">
+        Edit
+    </a>
+
+    <a href="?delete=<?= (int)$v['id'] ?>"
+       onclick="return confirm('Are you sure you want to delete this vehicle?')"
+       style="background:#ef4444;color:white;padding:6px 12px;border-radius:6px;text-decoration:none;margin-left:5px;">
+        Delete
+    </a>
+</td>
               </tr>
             <?php endforeach; ?>
           </tbody>

@@ -4,7 +4,8 @@ require_once 'calculation.php';
 
 $all = $conn->query("SELECT * FROM vehicles ORDER BY id ASC")->fetch_all(MYSQLI_ASSOC);
 $id      = (int)($_GET['id'] ?? 2);
-$budget  = (int)($_GET['budget'] ?? 100000);
+$budget = isset($_GET['budget']) ? (int)$_GET['budget'] : 100000;
+$type = $_GET['type'] ?? 'All';
 $downPct = (int)($_GET['down_pct'] ?? 20);
 $tenure  = (int)($_GET['tenure'] ?? 24);
 $dailyKm = (int)($_GET['daily_km'] ?? 20);
@@ -35,7 +36,11 @@ $bestMetrics = calculateVehicleMetrics($best, $downPct, $tenure, $dailyKm, $fuel
       <div class="nav-links">
         <a class="nav-link active" href="calculator.php">Calculator</a>
         <a class="nav-link" href="../user/compare.php">Compare</a>
-        <a class="nav-link" href="recommendation.php?budget=<?= $budget ?>">Recommendation</a>
+      <!-- <a class="nav-link"
+   href="recommendation.php?budget=<?= (int)$budget ?>&type=<?= urlencode($type) ?>">
+   Recommendation
+</a>
+         -->
       </div>
       <a class="btn-primary" style="padding:7px 14px;" href="../index.php">🏠 Home</a>
     </nav>
@@ -45,7 +50,9 @@ $bestMetrics = calculateVehicleMetrics($best, $downPct, $tenure, $dailyKm, $fuel
     </div>
 
     <form class="calc-controls" method="GET">
-      <input type="hidden" name="budget" value="<?= $budget ?>" />
+    <input type="hidden" name="budget" value="<?= (int)$budget ?>">
+    <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
+
       <div class="field"><label>Select Vehicle</label>
         <select name="id" onchange="this.form.submit()">
           <?php foreach ($all as $v): ?><option value="<?= $v['id'] ?>" <?= $v['id']==$selected['id']?'selected':'' ?>><?= htmlspecialchars($v['name']) ?> (<?= fmtINR($v['price']) ?>)</option><?php endforeach; ?>

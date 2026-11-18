@@ -27,6 +27,7 @@ function getBudgetTolerance($conn) {
     return $row ? (int)$row['allow_above_budget_pct'] : 20;
 }
 
+
 function requireAdmin() {
     $_SESSION['user_id']   = $_SESSION['user_id'] ?? 1;
     $_SESSION['user_name'] = 'Admin';

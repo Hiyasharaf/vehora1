@@ -117,7 +117,14 @@ $vehicles = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <span class="badge <?= $within ? 'badge-green' : 'badge-amber' ?>"><?= $within ? 'Within Budget' : 'Slightly Above' ?></span>
               </div>
               <div class="v-meta">Mileage: <?= $v['mileage'] ?> km/l • <?= htmlspecialchars($v['type']) ?></div>
-              <a class="btn-primary btn-sm" href="calculation/calculator.php?id=<?= $v['id'] ?>&budget=<?= $budget ?>">View Details</a>
+              <a class="btn-primary btn-sm"
+   href="calculation/calculator.php?id=<?= (int)$v['id'] ?>&budget=<?= (int)$budget ?>&type=<?= urlencode($type) ?>">
+   View Details
+</a>
+            <a class="btn-primary btn-sm"
+   href="calculation/recommendation.php?budget=<?= (int)$budget ?>&type=<?= urlencode($type) ?>">
+   Get Recommendation
+</a>
             </div>
           <?php endforeach; endif; ?>
         </div>

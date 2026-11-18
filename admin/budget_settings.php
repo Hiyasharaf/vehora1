@@ -16,7 +16,7 @@ $dashOffset = 264 - ($pct / 50) * 264 * 0.8;
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><title>Budget Settings — VEHORA</title><link rel="stylesheet" href="../css/style.css?v=3"></head>
-<body><?php include 'navbar.php'; ?>
+<body>
   <div class="app-shell"><div class="glass-frame"><div class="admin-layout">
     <aside class="sidebar">
       <div class="sidebar-brand"><div class="brand"><div class="brand-icon">V</div> VEHORA</div></div>

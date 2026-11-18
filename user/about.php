@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="UTF-8"><title>About — VEHORA</title><link rel="stylesheet" href="../css/style.css?v=3"></head>
 <body>
-<?php include 'navbar.php'; ?>
+
   <div class="app-shell"><div class="glass-frame">
     <nav class="navbar">
       <a class="brand" href="../index.php"><div class="brand-icon">V</div> VEHORA</a>
